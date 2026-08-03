@@ -12,8 +12,9 @@ $aluno = "Fulano";
 const ESCOLA = "Senac";
 ```
 
+- Arrays  : `$alunos = ["a","b"];`
+- objetos genéricos
 
-- Arrays  e objetos genéricos
 
 ## Recursos para estudar
 
