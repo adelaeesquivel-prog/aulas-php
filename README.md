@@ -18,8 +18,7 @@ const ESCOLA = "Senac";
 
 ## Recursos para estudar
 
-1. Condicionais
-2. Loops
+1. Estruturade controle Condicional 
 3. Funçoes nativas
 4. Funções personalizadas
 5. Inclusão d recursos externos
