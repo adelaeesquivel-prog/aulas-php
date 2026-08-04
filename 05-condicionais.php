@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Condicionais</title>
+    <style>
+        .comprar { color: red ;}
+        .normal { color: blue; }
+    </style>
 </head>
 <body>
     <h1>Trabalhando com estruturas condicionais</h1>
@@ -31,7 +35,7 @@
 
 <?php 
 $produto = "Ultrabook";
-$qtdEmEstoque = 30;
+$qtdEmEstoque = 3;
 $qtdCritica = 5; 
 ?>
    <h3><?= $produto ?></h3>
@@ -39,9 +43,9 @@ $qtdCritica = 5;
 
 <?php 
 if ($qtdEmEstoque < $qtdCritica) {
-    echo "<p> é necessaria comprar/repor</p>";
+    echo "<p class=\"comprar\"> É necessario comprar/repor</p>";
 } else {
-   echo"<p> Estoque normal.</p>";
+   echo"<p class=\"normal\"> Estoque normal.</p>";
 }
 
 
