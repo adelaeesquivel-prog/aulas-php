@@ -19,7 +19,7 @@
    if ($numero > 10){
  ?>
     <p><?=$numero?> é maior que 10.</p>
-    
+
 <?php
    }
 ?>
@@ -38,23 +38,23 @@ $qtdCritica = 5;
 
 <?php 
 if ($qtdEmEstoque < $qtdCritica) {
-    echo "<p class=\"comprar\"> É necessario comprar/repor</p>";
+?>
 
-    //condicional ANINHADA
+    <p class="comprar"> É necessario comprar/repor</p>
+
+<?php
     if($qtdEmEstoque ===0){
-        echo"<p><mark class=\"comprar\">🚨URGENTE!</mark></p>";
+?>
+        <p><mark class="comprar">🚨URGENTE!</mark></p>
+<?php
     }
 } else {
-   echo"<p class=\"normal\"> Estoque normal.</p>";
+
+?>
+   <p class="normal"> Estoque normal.</p>
+<?php
 }
  
-//if/else versão abreviada (shorthand if)?:
-    $excessoDeEstoque = $qtdEmEstoque > 100 ? "sim" : "não";
-    echo $excessoDeEstoque;
-    
-    echo "<br>";
-
-    echo $qtdEmEstoque >100 ? "sim" : "não";
 ?>
 <hr>
    <h2>Condicional ENCADEADA: <code> if, elseif, else</code></h2>
