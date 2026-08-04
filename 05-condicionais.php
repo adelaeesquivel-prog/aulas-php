@@ -35,7 +35,7 @@
 
 <?php 
 $produto = "Ultrabook";
-$qtdEmEstoque = 3;
+$qtdEmEstoque = 0;
 $qtdCritica = 5; 
 ?>
    <h3><?= $produto ?></h3>
@@ -44,6 +44,11 @@ $qtdCritica = 5;
 <?php 
 if ($qtdEmEstoque < $qtdCritica) {
     echo "<p class=\"comprar\"> É necessario comprar/repor</p>";
+
+    //condicional ANINHADA
+    if($qtdEmEstoque ===0){
+        echo"<p><mark class=\"comprar\">🚨URGENTE!</mark></p>";
+    }
 } else {
    echo"<p class=\"normal\"> Estoque normal.</p>";
 }
