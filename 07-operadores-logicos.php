@@ -52,5 +52,27 @@ else:
 <?php 
 endif;
 ?>
+
+<hr>
+
+<h2>! (NOT/NÃO/NEGAÇÃO)</h2>
+<p>inverte a lógica,ou seja, <b>verdadeiro/true</b>vira <b>falso/false</b></p>
+<?php
+ /* Se o usuario NÃO estiver logado , mostre o link do login.
+Caso contrario,exibir saudação*/
+$usuarioLogado = false;
+
+if (!$usuarioLogado): //se usuario nao esta logado (se usuariologado é FALSE)
+?>
+<p><a href="">Login (entre com seus dados)</a></p>
+<?php 
+else :
+?>
+<p>BEM-VINDO(a) ao sistema</p>
+<?php 
+endif;
+?>
+
+
 </body>
 </html>
