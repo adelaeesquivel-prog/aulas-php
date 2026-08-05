@@ -24,19 +24,47 @@ echo "<p>Ele estuda na escola" .ESCOLA."</p>";
   <hr>
   
   <h2>  Usando PHP intercalado comandos comHTML</h2>
- <?php $idade = 25; ?> //PHP aonde precisa
+  <?php $idade = 25; ?>    <!-- PHP aonde precisa -->
 
   <h3>Resultado:</h3>
 
 <?php 
 if ($idade >= 18) {
-   echo "<p><b>$aluno</b> é maior de idade</p>"; 
+   echo "<p><b>$aluno</b>  é maior de idade</p>"; 
 }else {
-    echo "<p><i>$aluno</i> é menor de idade</p>";
+    echo "<p><i>$aluno</i>  é menor de idade</p>";
 }
  ?>
 
  <h3>Resultado (usando PHP so aonde é necessario)</h3>
+
+ <?php 
+ if ($idade >= 18):
+ ?>
+ <p><b><?= $aluno ?></b> é maior de idade</p>
+ <?php 
+ else:
+ ?>
+ <p><i><?= $aluno ?></i> é menor de idade</p>
+<?php 
+endif;
+?>
+
+  <h3>Resultados (refatorados)</h3>
+  <i>(veja que, mudando a logica e usando variaveis auxiliares, nem precisamos fazer as separações PHP e HTML)</i>
+<?php
+ if ($idade >=18){
+    $htmlSaida = "<b>$aluno</b>";
+    $palavra = "maior";
+}else {
+    $htmlSaida = "<i>$aluno</i>";
+    $palavra = "menor";
+}
+?>
+ 
+ <p> <?php $htmlSaida ?> é <?= $palavra ?> de idade</p>
+
+
 
 
     
