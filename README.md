@@ -23,3 +23,17 @@ const ESCOLA = "Senac";
 4. Funções personalizadas
 5. Inclusão d recursos externos
 
+---
+
+
+## Como aplicar o Bootstrap?
+Importar para pagina HTML (mesmo q seja PHP) as referencias dos arquivos **CSS** e **JavaScript** da biblioteca.
+
+
+## CSS
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+ ## JS
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+Para mais informaçoes , é necessario usar a documentação  do Bootstrap : https://getbootstrap.com/docs/5.3/getting-started/introduction/
