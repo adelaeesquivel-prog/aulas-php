@@ -88,6 +88,27 @@ foreach($planoDeEstudos as $categoria): //cada linha
      endforeach;
     endforeach;
 ?>
+
+   <hr>
+   <h2>Usando foreach em uma matriz associativa</h2>
+<?php 
+$clientes = [
+    [
+        "nome"=> "Juliene",
+        "email"=> "ju@senac.br"
+    ],
+    [
+        "nome" => "Luiz",
+        "email"=> "luiz@senac.br"
+    ]
+];
+foreach ($clientes as $cliente):
+?>
+     <p><b>Nome: </b> <span class="bg-primary-subtle"> <?= $cliente["nome"] ?> </span></p>
+     <p><b>Email:</b> <span class="bg-dark-subtle p-1"> <?= $cliente["email"] ?></span></p>
+<?php 
+endforeach;
+?>
     </div>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">   
 </body>
