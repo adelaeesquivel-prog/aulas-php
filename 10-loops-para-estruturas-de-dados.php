@@ -52,7 +52,42 @@ for($i = 0; $i < $linhas; $i++): //acessa cada linha
 endforeach;
 ?>
 
+<hr>
 
+     <h2>Usando foreach para array associativo</h2>
+<?php 
+$curso = [
+    "titulo" =>"Gastronomia",
+    "carga_horaria" =>200,
+    "descricao" => "Aprender o básico sobre a área"
+];
+foreach ($curso as $chave => $valor):
+?>
+   <p><b><?= $chave?></b>: <?= $valor ?></p>
+
+<?php 
+endforeach;
+
+
+//Extraindo somente o valor
+foreach($curso as $valor):
+?>
+   <p><i> <?= $valor ?></i></p>
+<?php 
+endforeach;
+?>
+
+   <hr>
+   <h2>Usando foreach em uma matriz</h2>
+<?php 
+foreach($planoDeEstudos as $categoria): //cada linha
+    foreach ($categoria as $assunto): //cada coluna
+?>
+   <p><?= $assunto ?></p>
+<?php 
+     endforeach;
+    endforeach;
+?>
     </div>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">   
 </body>
