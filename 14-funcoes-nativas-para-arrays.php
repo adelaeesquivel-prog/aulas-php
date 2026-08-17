@@ -36,6 +36,70 @@ extract($aluno , EXTR_PREFIX_ALL, "chave");
         <li>Idade: <?= $chave_idade ?></li>
      </ul>
 
+     <p>Variavel <code>$nome</code> original: <?= $nome ?></p>
+     <hr>
+
+     <h2>array_sum()</h2>
+     <p>Soma os valores de um array</p>
+<?php 
+$carrinhoDeCompras = [
+      "TV_Led"=> 1200,
+      "Ultrabook" =>  2500,
+      "Geladeira" => 3000
+
+];
+$total = array_sum($carrinhoDeCompras);    
+?>
+  <p>Total: <?= $total ?></p>
+  <hr>
+  <h2>array_unique()</h2>
+   <p>Gera um novo array removendo elementos duplicados/repetidos em um array.</p>
+<?php 
+$categorias = [
+    "Eletronicos","Livros","Roupas","Livros", "Games","Eletronicos"
+];
+$categoriasUnicas = array_unique($categorias);
+?>
+    <pre><?php var_dump($categorias) ?></pre>
+    <pre><?php var_dump($categoriasUnicas) ?></pre>
+    <hr>
+
+    <h2>array_marge()</h2>
+    <p>Junta dados arrays diferentes</p>
+<?php 
+$produtosFilialNorte = ["Mouse","Teclado"];
+$produtosFilialSul = ["Monitor","Webcam", "Pendrive", "Teclado"];
+
+//$produtos = array_merge($produtosFilialNorte,$produtosFilialSul);
+//podemos combinar funçoes de arrays (abaixo , merge e depois unique)
+$produtos = array_unique(
+    array_merge($produtosFilialNorte , $produtosFilialSul)
+);
+?>
+    <pre><?php var_dump($produtos) ?></pre>
+
+    <hr>
+    <h2>array_combine()</h2>
+    <p>Cria um novo array a partir de uma lista de valores e uma lista de chaves. </p>
+<?php 
+//Lista de chaves
+$games = ["Super mario", "Sonic", "Final_Fantasy"];
+
+//Lista de valores
+$preco = [99,50,129];
+$catalogo = array_combine($games ,$preco);
+?>
+      <pre><?php var_dump($catalogo) ?></pre>
+      
+    <hr>
+    <h2>array_map()</h2>
+    <p>Percorre cada elemento de um array , executauma função(chamada de callback) e gera um novo array com os resultados</p>
+<?php 
+$catalogoComDesconto = array_map(function (float $preco): float {
+   return $preco - $preco *0.10;
+} ,$catalogo);
+?>
+     <pre><?php var_dump($catalogoComDesconto) ?></pre>
 
     </div>
 
