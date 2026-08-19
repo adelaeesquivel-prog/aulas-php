@@ -36,7 +36,42 @@ $redeSocialValida = filter_var($redeSocial, FILTER_VALIDATE_URL);
 <?php if ($redeSocialValida): ?>
     <a href="<?= $redeSocial ?>" class="bnt btn-inf">Me siga no LinkedIN</a>
 <?php  endif; ?>
+     
+     <hr>
+     <h2>Sanitização</h2>
+     <h3>FILTER_SANITIZE_EMAIL</h3>
+<?php 
+$contato = "/adelae esquivel0 38@ gmail;com";
+$contatoSanitizado = filter_var($contato, FILTER_SANITIZE_EMAIL);
+?>
+     <p>Contato <b>sem </b>sanitização: <?= $contato ?></p>
+     <p>Contato <b>com </b>sanitização: <?= $contatoSanitizado ?></p>
 
+     <h3>FILTER_SANITIZE_FULL_CHARS</h3>
+<?php 
+//Simulando uma entrada de dados codigo HTML
+$nomeCompleto ="<img src='https://ogimg.infoglobo.com.br/rioshow/25088054-e75-c90/FT1086A/pacoca-caseira.jpg'>";
+
+$nomeCompletoSanitizado =filter_var(
+    $nomeCompleto , FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+?>
+     <p>Nome informado: <?= $nomeCompletoSanitizado ?></p>
+
+<?php 
+//Simulação de um ataque  de injeção de codigo JS  (XSS - Cross Site Scripting)
+$ataqueXSS = "<script>location = 'https://sp.senac.br'</script>";
+?>
+      <p>Teste:
+        <?= filter_var($ataqueXSS ,FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?>
+      </p>
+
+      <h3>htmlspecialchars()</h3>
+<?php 
+$nomeCompletoCorrigido = htmlspecialchars($nomeCompleto);
+$AtaqueEvitado = htmlspecialchars($ataqueXSS)
+?>
+      <p>Nome completo corrigido: <?= $nomeCompletoCorrigido ?></p>
+      <p>Ataque evitado: <?= $AtaqueEvitado ?></p> 
 </div>
 
 
