@@ -34,7 +34,7 @@ $redeSocialValida = filter_var($redeSocial, FILTER_VALIDATE_URL);
       <pre><?php var_dump($redeSocialValida) ?></pre>
 
 <?php if ($redeSocialValida): ?>
-    <a href="<?= $redeSocial ?>" class="bnt btn-inf">Me siga no LinkedIN</a>
+    <a href="<?= $redeSocial ?>" class="btn btn-info">Me siga no LinkedIN</a>
 <?php  endif; ?>
      
      <hr>
@@ -72,6 +72,34 @@ $AtaqueEvitado = htmlspecialchars($ataqueXSS)
 ?>
       <p>Nome completo corrigido: <?= $nomeCompletoCorrigido ?></p>
       <p>Ataque evitado: <?= $AtaqueEvitado ?></p> 
+
+      <h3>FILTER_SANITIZE_NUMBER_INT</h3>
+<?php 
+$idade = "Tenho 15 anos";
+$idade = filter_var($idade, FILTER_SANITIZE_NUMBER_INT);
+?>  
+      <p>Idade: <?= $idade ?></p>
+
+      <hr>
+
+      <h3>FILTER_SANITIZE_NUMBER_FLOAT</h3>
+<?php 
+$precoInicial = "R$ 1000";
+$desconto ="R$ 500.30";
+
+$precoInicial = filter_var(
+    $precoInicial, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION
+);
+
+$desconto = filter_var(
+    $desconto, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION
+);
+
+$precoFinal = $precoInicial - $desconto;
+?>
+     <p>Preço Inicial: <?= $precoInicial ?></p>
+     <p>Preço Desconto: <?= $desconto ?></p>
+     <p>Preço Final: <?= $precoFinal ?></p>
 </div>
 
 
