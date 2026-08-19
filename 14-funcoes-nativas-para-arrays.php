@@ -101,6 +101,10 @@ $catalogoComDesconto = array_map(function (float $preco): float {
 ?>
      <pre><?php var_dump($catalogoComDesconto) ?></pre>
 
+     <hr>
+
+     <h2>array filter()</h2>
+
     </div>
 
     
