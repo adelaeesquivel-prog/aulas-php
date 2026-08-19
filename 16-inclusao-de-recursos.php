@@ -22,6 +22,12 @@
        <p>Estamos estudando no  <?= ESCOLA ?> fazendo o curso <?= $curso ?></p>
        <p>para fazer este curso o aluno deve ser maior de idade.</p>
        <p>Como voce <?= ALUNO ?>tem 20 anos,voce  é <?= verificarIdade(20) ?></p>
+
+       <h2>Exemplo de carregamento de conteúdo parcial/fragmento</h2>
+       <section>
+          <h3>Título qualquer</h3>
+          <?php include "textos.php"; ?>
+       </section>
     </div>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384
      -sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous>"></script>
