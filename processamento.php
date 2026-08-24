@@ -46,10 +46,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" ) {
  
     // Comparar os dois arrays (o do formulario e o válidos) checando se os valores "batem"
     $interessesValidados = array_intersect($interesses, $interresesValidos);
- 
-    //Caso nenhuma opção seja selecionada, o valor "não" fica como padrão
-    $informativos = $_POST["informativos"] ?? "nao";
- 
+
+    /*Informativos*/
+
+    //Define uma lista de opçãoes validas conforme o formulário
+    $opcoesvalidas = ["sim","nao"];
+
+    //Filtramos a entrada que o usuario escolheu
+    $informativos = filter_input(INPUT_POST, 'informativos',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    //verificamos se a escolha do usuario é uma opção valida.
+    //Se sim, usamos ela. Se não, usamos "nao"
+    $informativos = in_array($informativos, $opcoesvalidas) ? $informativos : "nao";
+    
     if(!empty($erros)):
 ?>
   <div class="alert alert-danger">
