@@ -8,68 +8,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container ">
         <h1>Recebimento e processamento de dados</h1>
         <hr>
 <?php
-/*$_POST e $_GET
-Arrays superglobais que possuem os dados enviados a partir de formularios e/ou links dinamicos.*/
-
-//Listas de possiveis erros encontrados ao logo dos processamentos
-$erros = []
-
-//Verificando se houve uma requisição POST
-if($_SERVER["REQUEST_METHOD"] === "POST"){
-
-    //Capturando os dados de cada campo
+//$_POST e $_GET
+//Arrays superglobais que possuem os dados enviados a partir de formularios e links dinamicos.
+ 
+// Lista de possiveis erros encontrados ao longo do processamento
+$erros = [];
+ 
+// verificando se houve uma requisição POST
+if ($_SERVER["REQUEST_METHOD"] === "POST" ) {
+ 
+    //Capturando e sanitizando/limpandoos dados
     $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);  
-    $email =  filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $idade =  filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
-    $mensagem =  filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_SPECIAL_CHARS);
-
-    // Operador ?? ->coalencencia nula.Caso nenhum intersse seja selecionado a variavel guardara um array vazio
-    $interesses = $_POST["interesses"] ?? [];
-
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $idade = filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_NUMBER_INT);
+    $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_SPECIAL_CHARS);
+   
+    // interesses
+    $interresesValidos = ["html", "css", "javascript"];
+ 
+    // Filtrando as opções de interesses e tornando array OBRIGATORIO
+    $interesses = filter_input(
+        INPUT_POST, 'interesses', FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY)
+         ?? [];
+ 
+    // se interesse NÃO é um array
+    if (!is_array($interesses)) {
+        // Garantindo que ao menos de erro no array vazio
+        $interesses = [];
+ 
+        // registrando uma mensagem de erro no array de erros
+        $erros[] = "Seleção inválida de interesses";
+    }  
+ 
+    // Comparar os dois arrays (o do formulario e o válidos) checando se os valores "batem"
+    $interessesValidados = array_intersect($interesses, $interresesValidos);
+ 
     //Caso nenhuma opção seja selecionada, o valor "não" fica como padrão
     $informativos = $_POST["informativos"] ?? "nao";
+ 
+    if(!empty($erros)):
 ?>
- 
- <h2>Dados recebidos</h2>
+  <div class="alert alert-danger">
+    <h2>Erros encontrados:</h2>
+    <ul class="mb-3">
+      <?php foreach ($erros as $erro): ?>
+        <li><?= $erro ?></li>
+      <?php endforeach ?>  
+    </ul>
+    <a href="17-formulario.html" class="btn btn-warning">Voltar para o formulário</a>
+  </div>
+<?php else: ?>
+<h2>Dados recebidos</h2>
 </div>
-    <p>Nome: <?= $nome ?></p>
-    <p>E-mail: <?= $email ?></p>
-    <p>Idade:<?= $idade ?></p>
-    <p>Mensagem <?= $mensagem ?></p>
-
-    <?php if(!empty($interesses)): ?>
-    <p>Interesses: <?= implode(", ", $interesses)?></p>
-    <?php endif; ?>
-
-    <p>Informativos:
-        <?= $informativos === 'sim' ? "Sim" : "Não"  ?>
-    </p>
-<?php 
-} else{
-?> 
-    <!-- Acesso inválido (usário não veio do formulário)-->
-     <div class="alert alert-danger">
+<p>Nome: <?= $nome ?></p>
+<p>E-mail: <?= $email ?></p>
+<p>Idade:<?= $idade ?></p>
+<p>Mensagem <?= $mensagem ?></p>
+ 
+<?php if(!empty($interessesValidados)): ?>
+<p>Interesses: <?= implode(", ", $interessesValidados)?></p>
+<?php endif; ?>
+ 
+<p>Informativos:
+     <?= $informativos === 'sim' ? "sim" : "Não"  ?>
+</p>
+ <?php
+    endif;
+}else {
+ ?>
+ 
+   <!-- Acesso invalido (usuario nao veio no formulario) -->
+    <div class="alert alert-danger">
         <h2>Acesso inválido!</h2>
-        <p>Voce deve usar o formulário para enviar os dados .</p>
+        <p>Você deve usar o formulário para enviar os dados.</p>
         <hr>
-        <a href="17-formulario.html" class="btn btn-primary">Ir para o formulario.</a>
-
-     </div>
-<?php    
+        <a href="17-formulario.html" class="btn btn-primary">Ir para o formulário.</a>
+    </div>
+ <?php
 }
-?> 
+ ?>
  
  
- 
- 
- 
- 
- 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"  
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+crossorigin="anonymous"></script>
 </body>
 </html>
+ 
  
