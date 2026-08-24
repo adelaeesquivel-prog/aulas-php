@@ -59,6 +59,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" ) {
     //Se sim, usamos ela. Se não, usamos "nao"
     $informativos = in_array($informativos, $opcoesvalidas) ? $informativos : "nao";
     
+    /*Validação de campos obrigatórios*/ 
+    if(empty($nome)) $erros[] = "O campo nome é obrigatório";
+    if(empty($email)) $erros[] = "O campo e-mail deve ser informado";
+    if(empty($mensagem)) $erros[] = "Voce deve escrever uma mensagem";
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $erros[] = "O e-mail não é valido";
+
+    $filtroIdade = [
+        "options" =>[
+            "min_range" => 0,
+            "max_range" => 130,
+        ]
+    ];
+   
+    if (!filter_var($idade, FILTER_VALIDATE_INT, $filtroIdade)){
+        $erros[] = "Idade inválida. A idade deve estarentre 0 e 130";
+    }
+
+
+
     if(!empty($erros)):
 ?>
   <div class="alert alert-danger">
