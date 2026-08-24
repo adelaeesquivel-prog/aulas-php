@@ -1,7 +1,7 @@
 <?php 
 //Definindo um caminho de base/referencia para os links
 const BASE = "/site/";
-//Detectar/guardar o nome da paginaaberta pelo usuario
+//Detectar/guardar o nome da pagina aberta pelo usuario
 $pagina = basename($_SERVER['PHP_SELF']);
 
 switch($pagina){

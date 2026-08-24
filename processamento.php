@@ -12,6 +12,8 @@
         <h1>Recebimento e processamento de dados</h1>
         <hr>
 <?php
+/*$_POST e $_GET
+Arrays superglobais que possuem os dados enviados a partir de formularios e/ou links dinamicos.*/
  
 //Capturando os dados de cada campo
 $nome = $_POST["nome"];  
@@ -22,7 +24,7 @@ $mensagem = $_POST["mensagem"];
 // Operador ?? ->coalencencia nula.Caso nenhum intersse seja selecionado a variavel guardara um array vazio
 $interesses = $_POST["interesses"] ?? [];
 
-//Caso nenhuma opção seja selecionada, o valor "não"fica como padrão
+//Caso nenhuma opção seja selecionada, o valor "não" fica como padrão
 $informativos = $_POST["informativos"] ?? "nao";
 ?>
  
